@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Annual Holiday Memories</title>
+    <!-- Tailwind CSS for responsive layout & styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for classic holiday elegance & Inter for crisp legibility -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        evergreen: {
+                            950: '#0a1c15',
+                            900: '#102b20',
+                            800: '#183d2e',
+                            700: '#21523e',
+                        },
+                        gold: {
+                            200: '#f5e4b3',
+                            300: '#ebd082',
+                            400: '#dfba54',
+                            500: '#c99e32',
+                            600: '#a87f1e',
+                            700: '#8a6414',
+                            800: '#6b4c0d',
+                            900: '#4d3507',
+                        },
+                        cream: '#fdfbf7'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#0a1324] text-evergreen-950 font-sans min-h-screen flex flex-col justify-between relative overflow-x-hidden selection:bg-gold-600 selection:text-cream">
+
+    <!-- Animated Middleburg, Virginia Christmas Streetscape Canvas -->
+    <canvas id="village-canvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full"></canvas>
+
+    <!-- Warm Golden Evening Lantern Glow Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-10 bg-[radial-gradient(circle_at_50%_75%,rgba(255,204,112,0.14)_0%,rgba(12,20,38,0.22)_60%,rgba(6,10,20,0.42)_100%)]"></div>
+
+    <!-- Header Navigation & Scene Toggle -->
+    <header class="relative z-20 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-6 pb-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-center sm:text-left px-5 py-2.5 rounded-2xl bg-cream/85 backdrop-blur-md border border-gold-600/45 shadow-lg">
+            <div class="inline-flex items-center gap-2 text-gold-700 text-xs uppercase tracking-[0.25em] font-semibold mb-1">
+                <span>✦</span>
+                <span>Holiday Archive</span>
+                <span>✦</span>
+            </div>
+            <h1 class="font-serif text-2xl sm:text-3xl md:text-4xl font-semibold text-evergreen-950 tracking-tight">
+                The Miller Family <span class="italic text-gold-700 font-normal">Chronicles</span>
+            </h1>
+        </div>
+
+        <!-- Controls: Streetscape Animation Toggle -->
+        <div class="flex items-center gap-3">
+            <button id="scene-toggle" type="button" aria-pressed="true"
+                class="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cream/85 hover:bg-gold-600 backdrop-blur-md border border-gold-600/50 text-evergreen-950 hover:text-cream text-xs sm:text-sm font-medium transition-all duration-200 shadow-md cursor-pointer">
+                <svg id="scene-icon" class="w-4 h-4 text-gold-600 group-hover:text-cream transition-transform duration-500 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                </svg>
+                <span id="scene-label">Middleburg Night: On</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Carousel Section -->
+    <main class="relative z-20 flex-1 flex flex-col items-center justify-center w-full max-w-6xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
+        
+        <!-- Carousel Wrapper -->
+        <div class="relative w-full flex items-center justify-center">
+            
+            <!-- Previous (Newer Year) Desktop Button -->
+            <button id="prev-btn" type="button" aria-label="Previous slide (Newer year)"
+                class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-cream/85 hover:bg-gold-600 backdrop-blur-md text-gold-700 hover:text-cream border border-gold-600/50 shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold-500 mr-4 lg:mr-6 shrink-0 cursor-pointer">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+
+            <!-- Translucent Frosted-Glass Holiday Card Frame Container -->
+            <article id="carousel-card" class="w-full max-w-3xl bg-cream/65 backdrop-blur-md text-evergreen-950 rounded-2xl shadow-[0_24px_60px_-12px_rgba(4,8,18,0.55)] border-4 border-gold-600/90 p-3 sm:p-5 md:p-7 transition-all duration-300 select-none">
+                
+                <!-- Inner Decorative Matting Border -->
+                <div class="border border-gold-600/45 rounded-xl p-3 sm:p-5 flex flex-col items-center relative bg-gradient-to-b from-cream/65 to-[#f7f0e4]/55">
+                    
+                    <!-- Top Year Ribbon & Counter -->
+                    <div class="w-full flex items-center justify-between mb-3 sm:mb-4">
+                        <span id="slide-badge" class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-gold-600 text-cream font-serif text-sm sm:text-base font-medium tracking-wide shadow-sm">
+                            Christmas 2026
+                        </span>
+                        <span id="slide-counter" class="text-xs font-semibold tracking-widest uppercase text-evergreen-900/80">
+                            1 of 4
+                        </span>
+                    </div>
+
+                    <!-- Photo Viewport (Supports Touch Swipe & Click to Zoom) -->
+                    <div id="photo-touch-area" class="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-lg overflow-hidden bg-evergreen-900 shadow-inner border border-evergreen-950/15 group cursor-zoom-in">
+                        <img id="slide-image" src="" alt="Annual Family Holiday Photo" 
+                            class="w-full h-full object-cover transition-opacity duration-300">
+                        
+                        <!-- Subtle Expand Hint on Hover -->
+                        <button id="zoom-btn" type="button" aria-label="View full size photo"
+                            class="absolute bottom-3 right-3 p-2.5 rounded-full bg-evergreen-950/75 hover:bg-evergreen-950 text-cream opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200 backdrop-blur-sm cursor-pointer">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Holiday Card Greeting & Caption -->
+                    <div id="slide-text-container" class="w-full text-center mt-4 sm:mt-6 px-3 py-3 rounded-xl bg-cream/65 backdrop-blur-sm border border-white/60 transition-opacity duration-300">
+                        <h2 id="slide-title" class="font-serif text-xl sm:text-2xl md:text-3xl font-semibold text-evergreen-950 drop-shadow-[0_1px_1px_rgba(255,255,255,0.85)] leading-snug">
+                            Warmest Wishes from the Miller Family
+                        </h2>
+                        <div class="flex items-center justify-center gap-2 my-2 text-gold-700 text-xs">
+                            <span class="h-px w-8 bg-gold-600/50"></span>
+                            <span>❄</span>
+                            <span class="h-px w-8 bg-gold-600/50"></span>
+                        </div>
+                        <p id="slide-location" class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-gold-800 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] mb-1.5">
+                            Middleburg, Virginia
+                        </p>
+                        <p id="slide-caption" class="text-sm sm:text-base font-medium text-evergreen-950 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] max-w-xl mx-auto leading-relaxed">
+                            Strolling down Washington Street after the Christmas parade, hot cider in hand and holiday cheer all around. Wishing peace and joy to everyone near and far!
+                        </p>
+                    </div>
+
+                </div>
+            </article>
+
+            <!-- Next (Older Year) Desktop Button -->
+            <button id="next-btn" type="button" aria-label="Next slide (Older year)"
+                class="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-cream/85 hover:bg-gold-600 backdrop-blur-md text-gold-700 hover:text-cream border border-gold-600/50 shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold-500 ml-4 lg:ml-6 shrink-0 cursor-pointer">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Previous / Next Buttons -->
+        <div class="flex md:hidden items-center justify-center gap-4 mt-4 w-full">
+            <button id="mobile-prev-btn" type="button" aria-label="Newer year"
+                class="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-cream/85 hover:bg-gold-600 backdrop-blur-md text-gold-800 hover:text-cream border border-gold-600/50 text-sm font-medium shadow-md active:scale-95 transition cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                <span>Newer</span>
+            </button>
+            <button id="mobile-next-btn" type="button" aria-label="Older year"
+                class="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-cream/85 hover:bg-gold-600 backdrop-blur-md text-gold-800 hover:text-cream border border-gold-600/50 text-sm font-medium shadow-md active:scale-95 transition cursor-pointer">
+                <span>Older</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Year Selector Timeline Pills -->
+        <nav aria-label="Select holiday year" class="mt-6 sm:mt-8 w-full max-w-3xl">
+            <div id="year-pills" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                <!-- Populated dynamically by JavaScript -->
+            </div>
+        </nav>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-20 w-full max-w-6xl mx-auto px-4 py-4 text-center text-xs text-evergreen-950 font-medium">
+        <p class="inline-block px-4 py-1.5 rounded-full bg-cream/75 backdrop-blur-sm border border-gold-600/30 shadow-sm">
+            Use arrow keys, swipe, or select a year above to browse our annual holiday cards.
+        </p>
+    </footer>
+
+    <!-- Fullscreen Lightbox Modal -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Full size photo view"
+        class="fixed inset-0 z-50 hidden bg-evergreen-950/95 backdrop-blur-md flex-col items-center justify-center p-4 sm:p-8">
+        <button id="lightbox-close" type="button" aria-label="Close full size view"
+            class="absolute top-4 right-4 sm:top-6 sm:right-6 p-3 rounded-full bg-evergreen-900 hover:bg-gold-600 text-cream border border-gold-500/50 transition cursor-pointer">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Full size holiday photo" class="max-w-full max-h-[80vh] rounded-lg border-2 border-gold-500/75 shadow-2xl object-contain">
+        <p id="lightbox-caption" class="mt-4 font-serif text-lg sm:text-xl text-gold-200 text-center"></p>
+    </div>
+
+    <script>
+        /**
+         * ============================================================================
+         * 🎄 EASY GITHUB CUSTOMIZATION: EDIT YOUR FAMILY PHOTOS BELOW 🎄
+         * ============================================================================
+         * How to add your own photos when hosting on GitHub Pages:
+         * 1. Create a folder named `images` in your GitHub repository (next to index.html).
+         * 2. Upload your photos (e.g., `2026.jpg`, `2025.jpg`, `2024.jpg`).
+         * 3. Update the `image` path, `year`, `title`, `location`, and `caption` below.
+         * 4. Keep the newest year FIRST in the array so visitors see it right away!
+         * 
+         * Note: If an image file is missing or not uploaded yet, the site automatically
+         * generates a festive illustrated holiday card fallback for that year!
+         */
+        const holidayPhotos = [
+            {
+                year: "2026",
+                badge: "Christmas 2026",
+                image: "images/2026.jpg", // Replace with your actual image path in GitHub
+                title: "Warmest Wishes from the Miller Family",
+                location: "Middleburg, Virginia",
+                caption: "Strolling down Washington Street after the Christmas parade, hot cider in hand and holiday cheer all around. Wishing peace and joy to everyone near and far!"
+            },
+            {
+                year: "2025",
+                badge: "Christmas 2025",
+                image: "images/2025.jpg",
+                title: "Joy to the World & Happy Holidays",
+                location: "Upperville, Virginia",
+                caption: "Celebrating a crisp Virginia winter in Hunt Country! Toby finally learned how to love the snow, and hot cocoa was enjoyed by all."
+            },
+            {
+                year: "2024",
+                badge: "Christmas 2024",
+                image: "images/2024.jpg",
+                title: "Merry & Bright from Our Home to Yours",
+                location: "Arlington, Virginia",
+                caption: "Our first holiday season in the new house—complete with a 9-foot Douglas fir and way too many homemade gingerbread cookies."
+            },
+            {
+                year: "2023",
+                badge: "Christmas 2023",
+                image: "images/2023.jpg",
+                title: "Season’s Greetings & Love Always",
+                location: "Leesburg, Virginia",
+                caption: "Twinkling historic lampposts, festive wreaths, and unforgettable memories from our winter weekend in Loudoun County."
+            }
+        ];
+
+        // ============================================================================
+        // REALISTIC MIDDLEBURG, VIRGINIA CHRISTMAS STREETSCAPE (COZY NIGHTTIME GLOW)
+        // ============================================================================
+        const villageCanvas = document.getElementById('village-canvas');
+        const ctx = villageCanvas.getContext('2d');
+        const sceneToggleBtn = document.getElementById('scene-toggle');
+        const sceneLabel = document.getElementById('scene-label');
+
+        let sceneAnimating = true;
+        let lastTimestamp = 0;
+        let elapsedTime = 0;
+
+        let stars = [];
+        let clouds = [];
+        let streetTrees = [];
+        let storefronts = [];
+        let lampposts = [];
+        let smokeParticles = [];
+        let shoppers = [];
+        let snowFlakes = [];
+
+        function resizeCanvas() {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            villageCanvas.width = window.innerWidth * dpr;
+            villageCanvas.height = window.innerHeight * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            initMiddleburgScene();
+        }
+
+        function initMiddleburgScene() {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            const sidewalkY = h * 0.84;
+
+            // 0. Crisp Winter Night Stars
+            const starCount = Math.min(Math.floor(w / 14), 110);
+            stars = Array.from({ length: starCount }, () => ({
+                x: Math.random() * w,
+                y: Math.random() * (h * 0.56),
+                r: Math.random() * 1.4 + 0.4,
+                phase: Math.random() * Math.PI * 2,
+                speed: 1.5 + Math.random() * 2.5
+            }));
+
+            // 1. Soft moonlit night clouds
+            const cloudCount = Math.max(4, Math.min(Math.floor(w / 260), 7));
+            clouds = Array.from({ length: cloudCount }, (_, i) => ({
+                x: (w / cloudCount) * i + Math.random() * 80,
+                y: h * (0.10 + (i % 3) * 0.055) + Math.random() * 14,
+                scale: 0.75 + Math.random() * 0.45,
+                speed: 2.5 + Math.random() * 3,
+                alpha: 0.14 + Math.random() * 0.10
+            }));
+
+            // 2. Mature winter deciduous trees & evergreens in the background behind Washington Street
+            streetTrees = [];
+            const treeCount = Math.ceil(w / 95) + 2;
+            for (let i = 0; i < treeCount; i++) {
+                streetTrees.push({
+                    x: i * 95 + (Math.random() * 30 - 15),
+                    y: h * 0.77,
+                    scale: 0.75 + Math.random() * 0.35,
+                    isEvergreen: i % 3 === 1
+                });
+            }
+
+            // 3. Authentic Historic Middleburg, VA Washington Street Storefronts
+            const buildingSpecs = [
+                {
+                    ratio: 0.11,
+                    width: 195,
+                    height: 158,
+                    roofH: 46,
+                    type: 'fieldstone',
+                    signText: 'RED FOX TAVERN',
+                    awningColor: '#163d2e',
+                    shutterColor: '#0e1713',
+                    hasChimney: true,
+                    chimneySide: -1
+                },
+                {
+                    ratio: 0.36,
+                    width: 185,
+                    height: 148,
+                    roofH: 42,
+                    type: 'federalBrick',
+                    signText: 'MIDDLEBURG BOOKS',
+                    awningColor: '#8b1e24',
+                    shutterColor: '#0f1a15',
+                    hasChimney: true,
+                    chimneySide: 1
+                },
+                {
+                    ratio: 0.62,
+                    width: 190,
+                    height: 154,
+                    roofH: 44,
+                    type: 'clapboard',
+                    signText: 'PIEDMONT SADDLERY',
+                    awningColor: '#183d2e',
+                    shutterColor: '#111a16',
+                    hasChimney: false,
+                    chimneySide: -1
+                },
+                {
+                    ratio: 0.88,
+                    width: 188,
+                    height: 150,
+                    roofH: 42,
+                    type: 'fieldstone',
+                    signText: 'THE CHRISTMAS SHOP',
+                    awningColor: '#8b1e24',
+                    shutterColor: '#0f1a15',
+                    hasChimney: true,
+                    chimneySide: 1
+                }
+            ];
+
+            storefronts = buildingSpecs
+                .filter((_, idx) => w >= 720 || idx === 0 || idx === 1 || idx === 3)
+                .map((spec, idx) => ({
+                    ...spec,
+                    x: w * spec.ratio,
+                    y: sidewalkY - 6,
+                    smokeTimer: Math.random() * 1.4,
+                    stoneSeed: idx * 37
+                }));
+
+            // 4. Historic Black Iron Middleburg Streetlamps wrapped in Cedar Garland & Red Bows
+            const lampRatios = w < 640 ? [0.22, 0.54, 0.84] : [0.03, 0.24, 0.49, 0.75, 0.96];
+            lampposts = lampRatios.map(r => ({
+                x: w * r,
+                y: sidewalkY + 2
+            }));
+
+            // 5. Realistic Christmas Shoppers Strolling on the Red-Brick Sidewalk
+            const coatPalette = [
+                { coat: '#2b3a4a', pants: '#1a222b', skin: '#ecc0a1', hair: '#3b2618' }, // Navy wool coat
+                { coat: '#7d2027', pants: '#212529', skin: '#f2ccb2', hair: '#5c3c24' }, // Burgundy coat
+                { coat: '#5c4b3b', pants: '#232931', skin: '#d89e78', hair: '#1c1714' }, // Camel overcoat
+                { coat: '#1e3f32', pants: '#1b2026', skin: '#f0c4a6', hair: '#7a5230' }, // Hunter green Barbour jacket
+                { coat: '#383e47', pants: '#1c2127', skin: '#b57b56', hair: '#171412' }, // Charcoal peacoat
+                { coat: '#8c3b2b', pants: '#23272e', skin: '#f3cfb6', hair: '#8c6239' }  // Rust tweed jacket
+            ];
+
+            const bagColors = ['#8b1e24', '#183d2e', '#fdfbf7', '#c92a34', '#d4af37'];
+            const shopperCount = w < 640 ? 6 : 11;
+            shoppers = [];
+
+            for (let i = 0; i < shopperCount; i++) {
+                const dir = i % 2 === 0 ? 1 : -1;
+                const baseX = (w / shopperCount) * i + Math.random() * 40;
+                const speed = (15 + Math.random() * 11) * dir;
+                const scale = 0.92 + Math.random() * 0.16;
+                const style = coatPalette[i % coatPalette.length];
+
+                shoppers.push({
+                    x: baseX,
+                    y: sidewalkY + 12 + (i % 3) * 11,
+                    dir,
+                    speed,
+                    scale,
+                    stridePhase: Math.random() * Math.PI * 2,
+                    ...style,
+                    scarf: i % 2 === 0 ? '#a81c24' : '#f4efe6',
+                    hasHat: i % 3 !== 1,
+                    hatColor: i % 2 === 0 ? '#1e272e' : '#6e1419',
+                    bagCount: (i % 2) + 1,
+                    bag1Color: bagColors[i % bagColors.length],
+                    bag2Color: bagColors[(i + 2) % bagColors.length],
+                    hasCoffee: i % 3 === 0
+                });
+
+                // Add a walking companion for every 4th shopper
+                if (i % 4 === 0) {
+                    const compStyle = coatPalette[(i + 2) % coatPalette.length];
+                    shoppers.push({
+                        x: baseX - dir * 24,
+                        y: sidewalkY + 16 + (i % 3) * 11,
+                        dir,
+                        speed,
+                        scale: scale * 0.90,
+                        stridePhase: Math.random() * Math.PI * 2 + 0.8,
+                        ...compStyle,
+                        scarf: '#183d2e',
+                        hasHat: true,
+                        hatColor: '#8b1e24',
+                        bagCount: 1,
+                        bag1Color: bagColors[(i + 1) % bagColors.length],
+                        bag2Color: '#fdfbf7',
+                        hasCoffee: false
+                    });
+                }
+            }
+
+            // 6. Gentle Evening Snowflakes catching the golden streetlamp glow
+            const flakeCount = Math.min(Math.floor(w / 18), 85);
+            snowFlakes = Array.from({ length: flakeCount }, () => ({
+                x: Math.random() * w,
+                y: Math.random() * (h * 0.92),
+                r: Math.random() * 1.9 + 0.8,
+                vy: Math.random() * 16 + 10,
+                vx: Math.random() * 10 - 5,
+                phase: Math.random() * Math.PI * 2,
+                alpha: Math.random() * 0.55 + 0.3
+            }));
+        }
+
+        function drawNightSkyAndBlueRidge(w, h, dt, time) {
+            // Deep starry Virginia winter night sky with warm horizon glow from town lights
+            const skyGrad = ctx.createLinearGradient(0, 0, 0, h * 0.80);
+            skyGrad.addColorStop(0, '#070d1a');
+            skyGrad.addColorStop(0.42, '#101d36');
+            skyGrad.addColorStop(0.76, '#1c2b47');
+            skyGrad.addColorStop(1, '#363242');
+            ctx.fillStyle = skyGrad;
+            ctx.fillRect(0, 0, w, h);
+
+            // Twinkling Stars
+            for (const s of stars) {
+                const twinkle = 0.45 + 0.55 * Math.sin(time * s.speed + s.phase);
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 250, 232, ${twinkle * 0.85})`;
+                ctx.fill();
+            }
+
+            // Luminous Winter Moon & Soft Halo (Upper Right)
+            const moonX = w * 0.81;
+            const moonY = h * 0.16;
+            const moonHalo = ctx.createRadialGradient(moonX, moonY, 8, moonX, moonY, w * 0.28);
+            moonHalo.addColorStop(0, 'rgba(255, 248, 220, 0.45)');
+            moonHalo.addColorStop(0.25, 'rgba(210, 224, 255, 0.14)');
+            moonHalo.addColorStop(1, 'rgba(210, 224, 255, 0)');
+            ctx.fillStyle = moonHalo;
+            ctx.fillRect(0, 0, w, h);
+
+            // Crisp Crescent Moon
+            ctx.save();
+            ctx.fillStyle = '#fff9e6';
+            ctx.beginPath();
+            ctx.arc(moonX, moonY, 18, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#0c162b';
+            ctx.beginPath();
+            ctx.arc(moonX - 7, moonY - 4, 15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // Moonlit drifting night clouds
+            for (const c of clouds) {
+                c.x += c.speed * dt;
+                if (c.x > w + 150) c.x = -150;
+
+                ctx.save();
+                ctx.translate(c.x, c.y);
+                ctx.scale(c.scale, c.scale);
+                ctx.fillStyle = `rgba(180, 198, 230, ${c.alpha})`;
+                ctx.beginPath();
+                ctx.arc(0, 0, 30, 0, Math.PI * 2);
+                ctx.arc(26, -7, 36, 0, Math.PI * 2);
+                ctx.arc(58, -2, 30, 0, Math.PI * 2);
+                ctx.arc(82, 7, 22, 0, Math.PI * 2);
+                ctx.arc(-24, 7, 22, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+
+            // Distant Blue Ridge Mountain Foothills silhouetted against the night sky
+            const ridgeBase = h * 0.78;
+            const ridgeGrad = ctx.createLinearGradient(0, h * 0.54, 0, ridgeBase);
+            ridgeGrad.addColorStop(0, '#162238');
+            ridgeGrad.addColorStop(0.65, '#1b263b');
+            ridgeGrad.addColorStop(1, '#262b3d');
+            ctx.fillStyle = ridgeGrad;
+            ctx.beginPath();
+            ctx.moveTo(0, ridgeBase);
+            ctx.quadraticCurveTo(w * 0.16, h * 0.57, w * 0.34, h * 0.62);
+            ctx.quadraticCurveTo(w * 0.52, h * 0.66, w * 0.70, h * 0.58);
+            ctx.quadraticCurveTo(w * 0.86, h * 0.53, w, h * 0.60);
+            ctx.lineTo(w, ridgeBase);
+            ctx.closePath();
+            ctx.fill();
+
+            // Closer Virginia Piedmont rolling hills in twilight shadow
+            ctx.fillStyle = '#121a28';
+            ctx.beginPath();
+            ctx.moveTo(0, ridgeBase);
+            ctx.quadraticCurveTo(w * 0.25, h * 0.67, w * 0.55, h * 0.71);
+            ctx.quadraticCurveTo(w * 0.82, h * 0.74, w, h * 0.68);
+            ctx.lineTo(w, ridgeBase);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function drawBackgroundTrees(tree) {
+            const { x, y, scale, isEvergreen } = tree;
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.scale(scale, scale);
+
+            if (isEvergreen) {
+                // Dark moonlit Virginia cedar / pine
+                ctx.fillStyle = '#1a1412';
+                ctx.fillRect(-5, -14, 10, 18);
+                const tiers = [
+                    { top: -115, bot: -65, hw: 26, col: '#11241c' },
+                    { top: -82, bot: -35, hw: 36, col: '#0e1f18' },
+                    { top: -50, bot: -8, hw: 44, col: '#0b1913' }
+                ];
+                tiers.forEach(t => {
+                    ctx.fillStyle = t.col;
+                    ctx.beginPath();
+                    ctx.moveTo(0, t.top);
+                    ctx.lineTo(-t.hw, t.bot);
+                    ctx.lineTo(t.hw, t.bot);
+                    ctx.closePath();
+                    ctx.fill();
+                });
+            } else {
+                // Winter deciduous oak / sycamore silhouette
+                ctx.strokeStyle = '#242124';
+                ctx.lineWidth = 7;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(0, 4);
+                ctx.lineTo(0, -55);
+                ctx.stroke();
+
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.moveTo(0, -38);
+                ctx.lineTo(-26, -78);
+                ctx.moveTo(0, -45);
+                ctx.lineTo(24, -84);
+                ctx.moveTo(0, -55);
+                ctx.lineTo(-8, -96);
+                ctx.stroke();
+
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(-16, -62);
+                ctx.lineTo(-34, -74);
+                ctx.moveTo(14, -68);
+                ctx.lineTo(35, -78);
+                ctx.stroke();
+            }
+
+            ctx.restore();
+        }
+
+        function drawMiddleburgStorefront(b, time) {
+            const { x, y, width, height, roofH, type, signText, awningColor, shutterColor, hasChimney, chimneySide, stoneSeed } = b;
+            const left = x - width / 2;
+            const top = y - height;
+
+            ctx.save();
+
+            // Warm golden light spill onto sidewalk from shop windows
+            const windowSpill = ctx.createRadialGradient(x, y + 6, 10, x, y + 6, width * 0.65);
+            windowSpill.addColorStop(0, 'rgba(255, 200, 105, 0.28)');
+            windowSpill.addColorStop(1, 'rgba(255, 200, 105, 0)');
+            ctx.fillStyle = windowSpill;
+            ctx.fillRect(left - 30, y - 4, width + 60, 26);
+
+            // Historic Stone / Brick Chimney
+            if (hasChimney) {
+                const chimX = x + chimneySide * (width * 0.34);
+                const chimY = top - roofH - 14;
+                ctx.fillStyle = type === 'federalBrick' ? '#471d19' : '#464340';
+                ctx.fillRect(chimX - 11, chimY, 22, roofH + 18);
+                ctx.fillStyle = '#292726';
+                ctx.fillRect(chimX - 13, chimY - 3, 26, 4);
+            }
+
+            // Pitched Roof (Standing-seam dark metal or slate)
+            ctx.fillStyle = type === 'clapboard' ? '#182021' : '#1b1e24';
+            ctx.beginPath();
+            ctx.moveTo(left - 8, top + 2);
+            ctx.lineTo(left + width * 0.14, top - roofH);
+            ctx.lineTo(left + width * 0.86, top - roofH);
+            ctx.lineTo(left + width + 8, top + 2);
+            ctx.closePath();
+            ctx.fill();
+
+            // Roof Dormer Window with Warm Candle Glow
+            const dormW = 28;
+            const dormH = 24;
+            const dormX = x - dormW / 2;
+            const dormY = top - roofH * 0.68;
+            ctx.fillStyle = '#a39d94';
+            ctx.fillRect(dormX, dormY, dormW, dormH);
+            ctx.fillStyle = '#ffcf75';
+            ctx.fillRect(dormX + 6, dormY + 5, 16, 15);
+            // Dormer gable
+            ctx.fillStyle = '#1b1e24';
+            ctx.beginPath();
+            ctx.moveTo(dormX - 4, dormY);
+            ctx.lineTo(x, dormY - 14);
+            ctx.lineTo(dormX + dormW + 4, dormY);
+            ctx.closePath();
+            ctx.fill();
+
+            // Main Building Facade (Evening shadow tones)
+            if (type === 'fieldstone') {
+                ctx.fillStyle = '#57524c';
+                ctx.fillRect(left, top, width, height);
+
+                const stoneColors = ['#4d4842', '#615b53', '#423e39', '#6b645b', '#524c45'];
+                const rows = 13;
+                const rowH = height / rows;
+                for (let r = 0; r < rows; r++) {
+                    let curX = left + 2;
+                    let colIdx = 0;
+                    while (curX < left + width - 4) {
+                        const stoneW = Math.min(18 + ((stoneSeed + r * 13 + colIdx * 7) % 16), left + width - 2 - curX);
+                        ctx.fillStyle = stoneColors[(stoneSeed + r + colIdx) % stoneColors.length];
+                        ctx.beginPath();
+                        ctx.roundRect(curX, top + r * rowH + 1, stoneW - 1.5, rowH - 2, 2);
+                        ctx.fill();
+                        curX += stoneW;
+                        colIdx++;
+                    }
+                }
+            } else if (type === 'federalBrick') {
+                ctx.fillStyle = '#57231e';
+                ctx.fillRect(left, top, width, height);
+
+                ctx.fillStyle = 'rgba(24, 8, 6, 0.28)';
+                for (let by = top + 6; by < y; by += 8) {
+                    ctx.fillRect(left, by, width, 1);
+                }
+                // Moonlit limestone corner quoins
+                ctx.fillStyle = '#999288';
+                for (let q = 0; q < 7; q++) {
+                    ctx.fillRect(left, top + 4 + q * 21, 10, 11);
+                    ctx.fillRect(left + width - 10, top + 4 + q * 21, 10, 11);
+                }
+            } else {
+                // Evening Clapboard Siding
+                ctx.fillStyle = '#9e9a92';
+                ctx.fillRect(left, top, width, height);
+
+                ctx.strokeStyle = 'rgba(55, 52, 48, 0.35)';
+                ctx.lineWidth = 1;
+                for (let cy = top + 8; cy < y; cy += 8) {
+                    ctx.beginPath();
+                    ctx.moveTo(left, cy);
+                    ctx.lineTo(left + width, cy);
+                    ctx.stroke();
+                }
+            }
+
+            // Dentil Crown Molding under Eaves
+            ctx.fillStyle = '#aba69d';
+            ctx.fillRect(left - 5, top, width + 10, 6);
+
+            // Second-Story Multi-Pane Colonial Windows glowing warmly at night
+            const winPositions = [x - width * 0.28, x, x + width * 0.28];
+            winPositions.forEach((wx) => {
+                const winW = 22;
+                const winH = 34;
+                const wy = top + 18;
+
+                // Louvered Shutters
+                ctx.fillStyle = shutterColor;
+                ctx.fillRect(wx - winW / 2 - 7, wy, 6, winH);
+                ctx.fillRect(wx + winW / 2 + 1, wy, 6, winH);
+
+                // Window Frame & Warm Lit Interior Glow
+                ctx.fillStyle = '#b5afa6';
+                ctx.fillRect(wx - winW / 2 - 1.5, wy - 1.5, winW + 3, winH + 3);
+                const paneGrad = ctx.createLinearGradient(wx, wy, wx, wy + winH);
+                paneGrad.addColorStop(0, '#f5ba5b');
+                paneGrad.addColorStop(0.55, '#ffd782');
+                paneGrad.addColorStop(1, '#ffe8ad');
+                ctx.fillStyle = paneGrad;
+                ctx.fillRect(wx - winW / 2, wy, winW, winH);
+
+                // Colonial window mullions
+                ctx.strokeStyle = '#635c52';
+                ctx.lineWidth = 1.2;
+                ctx.beginPath();
+                ctx.moveTo(wx, wy);
+                ctx.lineTo(wx, wy + winH);
+                ctx.moveTo(wx - winW / 2, wy + winH * 0.33);
+                ctx.lineTo(wx + winW / 2, wy + winH * 0.33);
+                ctx.moveTo(wx - winW / 2, wy + winH * 0.66);
+                ctx.lineTo(wx + winW / 2, wy + winH * 0.66);
+                ctx.stroke();
+
+                // Evergreen Christmas Wreath with Red Bow silhouetted against warm window
+                ctx.strokeStyle = '#153b2b';
+                ctx.lineWidth = 3.2;
+                ctx.beginPath();
+                ctx.arc(wx, wy + winH * 0.48, 5.5, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.fillStyle = '#c92a34';
+                ctx.beginPath();
+                ctx.arc(wx, wy + winH * 0.48 - 5.5, 2.2, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Classic Wooden Boutique Signboard above Ground Floor
+            const signW = width * 0.66;
+            const signH = 16;
+            const signX = x - signW / 2;
+            const signY = top + 64;
+            ctx.fillStyle = '#101814';
+            ctx.beginPath();
+            ctx.roundRect(signX, signY, signW, signH, 3);
+            ctx.fill();
+            ctx.strokeStyle = '#dfba54';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(signX + 1.5, signY + 1.5, signW - 3, signH - 3);
+
+            ctx.fillStyle = '#fff8e6';
+            ctx.font = '600 8.5px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(signText, x, signY + signH / 2 + 0.5);
+
+            // Ground Floor Storefront: Traditional Entry Door + Glowing Holiday Display Windows
+            const groundTop = top + 85;
+            const groundH = y - groundTop;
+
+            // Shop Door (left-center)
+            const doorW = 26;
+            const doorX = left + width * 0.18;
+            ctx.fillStyle = '#aba69d';
+            ctx.fillRect(doorX - 2, groundTop + 4, doorW + 4, groundH - 4);
+            ctx.fillStyle = awningColor;
+            ctx.fillRect(doorX, groundTop + 6, doorW, groundH - 6);
+            // Warm glowing glass window in upper door with wreath
+            ctx.fillStyle = '#ffd984';
+            ctx.fillRect(doorX + 5, groundTop + 11, doorW - 10, 24);
+            ctx.strokeStyle = '#153b2b';
+            ctx.lineWidth = 2.8;
+            ctx.beginPath();
+            ctx.arc(doorX + doorW / 2, groundTop + 23, 5, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Large Boutique Display Window (right-center)
+            const dispX = left + width * 0.40;
+            const dispW = width * 0.48;
+            ctx.fillStyle = '#aba69d';
+            ctx.fillRect(dispX - 3, groundTop + 4, dispW + 6, groundH - 12);
+            // Bright warm golden interior shop display
+            const shopGlow = ctx.createLinearGradient(dispX, groundTop + 6, dispX, groundTop + groundH - 10);
+            shopGlow.addColorStop(0, '#ffe8a8');
+            shopGlow.addColorStop(1, '#f7b955');
+            ctx.fillStyle = shopGlow;
+            ctx.fillRect(dispX, groundTop + 6, dispW, groundH - 16);
+
+            // Miniature Christmas Tree & Wrapped Gifts inside Storefront Window
+            const treeX = dispX + dispW * 0.35;
+            const treeBaseY = groundTop + groundH - 12;
+            ctx.fillStyle = '#143828';
+            ctx.beginPath();
+            ctx.moveTo(treeX, treeBaseY - 32);
+            ctx.lineTo(treeX - 11, treeBaseY - 4);
+            ctx.lineTo(treeX + 11, treeBaseY - 4);
+            ctx.closePath();
+            ctx.fill();
+            ctx.fillStyle = '#c92a34';
+            ctx.fillRect(dispX + dispW * 0.62, treeBaseY - 12, 10, 10);
+            ctx.fillStyle = '#fdfbf7';
+            ctx.fillRect(dispX + dispW * 0.76, treeBaseY - 9, 8, 7);
+
+            // Window mullions
+            ctx.strokeStyle = '#756e64';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(dispX + dispW * 0.5, groundTop + 6);
+            ctx.lineTo(dispX + dispW * 0.5, groundTop + groundH - 10);
+            ctx.stroke();
+
+            // Lush Cedar Garland draped over Storefront
+            ctx.strokeStyle = '#123828';
+            ctx.lineWidth = 6.5;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(left + 10, groundTop + 2);
+            ctx.quadraticCurveTo(left + width * 0.32, groundTop + 13, x, groundTop + 2);
+            ctx.quadraticCurveTo(left + width * 0.68, groundTop + 13, left + width - 10, groundTop + 2);
+            ctx.stroke();
+
+            // Twinkling Warm White Christmas Fairy Lights along the Garland
+            const lightSteps = 12;
+            for (let i = 1; i < lightSteps; i++) {
+                const t = i / lightSteps;
+                const lx = left + 10 + t * (width - 20);
+                const archOffset = Math.sin(t * Math.PI * 2) * 5;
+                const ly = groundTop + 2 + Math.abs(archOffset);
+                const twinkle = 0.65 + 0.35 * Math.sin(time * 4 + i * 1.3 + stoneSeed);
+
+                ctx.fillStyle = `rgba(255, 224, 130, ${twinkle * 0.45})`;
+                ctx.beginPath();
+                ctx.arc(lx, ly, 4, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = `rgba(255, 248, 210, ${twinkle})`;
+                ctx.beginPath();
+                ctx.arc(lx, ly, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Red velvet bows along the garland
+            [left + 12, x, left + width - 12].forEach(bx => {
+                ctx.fillStyle = '#b81d24';
+                ctx.beginPath();
+                ctx.arc(bx - 3, groundTop + 2, 3.2, 0, Math.PI * 2);
+                ctx.arc(bx + 3, groundTop + 2, 3.2, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillRect(bx - 2.5, groundTop + 3, 2, 6);
+                ctx.fillRect(bx + 0.5, groundTop + 3, 2, 6);
+            });
+
+            // Planter Urns with Mini Evergreens flanking the Shop Entrance
+            [doorX - 10, left + width - 14].forEach(px => {
+                ctx.fillStyle = '#1b1e22';
+                ctx.beginPath();
+                ctx.moveTo(px - 6, y - 12);
+                ctx.lineTo(px + 6, y - 12);
+                ctx.lineTo(px + 4, y);
+                ctx.lineTo(px - 4, y);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.fillStyle = '#143828';
+                ctx.beginPath();
+                ctx.moveTo(px, y - 32);
+                ctx.lineTo(px - 7, y - 12);
+                ctx.lineTo(px + 7, y - 12);
+                ctx.closePath();
+                ctx.fill();
+            });
+
+            ctx.restore();
+        }
+
+        function drawSidewalkAndStreet(w, h) {
+            const sidewalkY = h * 0.84;
+            const streetY = h * 0.935;
+
+            // 1. Classic Middleburg Red-Brick Herringbone Sidewalk in evening light
+            const brickGrad = ctx.createLinearGradient(0, sidewalkY - 8, 0, streetY);
+            brickGrad.addColorStop(0, '#5e2e27');
+            brickGrad.addColorStop(0.5, '#4f251f');
+            brickGrad.addColorStop(1, '#3d1c17');
+            ctx.fillStyle = brickGrad;
+            ctx.fillRect(0, sidewalkY - 8, w, streetY - (sidewalkY - 8));
+
+            // Brick mortar lines
+            ctx.strokeStyle = 'rgba(210, 190, 175, 0.14)';
+            ctx.lineWidth = 1;
+            for (let row = 0; row < 5; row++) {
+                const ry = sidewalkY - 4 + row * 12;
+                ctx.beginPath();
+                ctx.moveTo(0, ry);
+                ctx.lineTo(w, ry);
+                ctx.stroke();
+
+                const offset = (row % 2) * 14;
+                for (let bx = offset; bx < w; bx += 28) {
+                    ctx.beginPath();
+                    ctx.moveTo(bx, ry);
+                    ctx.lineTo(bx, ry + 12);
+                    ctx.stroke();
+                }
+            }
+
+            // 2. Granite Curb
+            ctx.fillStyle = '#6b6864';
+            ctx.fillRect(0, streetY - 4, w, 5);
+
+            // 3. Washington Street Asphalt Foreground at Night
+            const roadGrad = ctx.createLinearGradient(0, streetY, 0, h);
+            roadGrad.addColorStop(0, '#1e2128');
+            roadGrad.addColorStop(1, '#12141a');
+            ctx.fillStyle = roadGrad;
+            ctx.fillRect(0, streetY, w, h - streetY);
+
+            // Subtle warm yellow double-centerline hint at very bottom
+            ctx.fillStyle = 'rgba(215, 168, 60, 0.35)';
+            ctx.fillRect(0, h - 5, w, 2);
+        }
+
+        function drawMiddleburgLamppost(lamp, time) {
+            const { x, y } = lamp;
+            const topY = y - 82;
+            const flicker = 0.94 + 0.06 * Math.sin(time * 5 + x * 0.05);
+
+            ctx.save();
+
+            // Warm Golden Pool of Light on the Brick Sidewalk beneath Lamppost
+            const groundPool = ctx.createRadialGradient(x, y + 6, 4, x, y + 6, 68);
+            groundPool.addColorStop(0, `rgba(255, 212, 120, ${0.42 * flicker})`);
+            groundPool.addColorStop(0.55, `rgba(255, 195, 95, ${0.16 * flicker})`);
+            groundPool.addColorStop(1, 'rgba(255, 195, 95, 0)');
+            ctx.fillStyle = groundPool;
+            ctx.beginPath();
+            ctx.ellipse(x, y + 8, 68, 18, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Radiant Golden Lantern Halo in the Night Air
+            const lanternHalo = ctx.createRadialGradient(x, topY - 7, 3, x, topY - 7, 56);
+            lanternHalo.addColorStop(0, `rgba(255, 244, 195, ${0.95 * flicker})`);
+            lanternHalo.addColorStop(0.28, `rgba(255, 206, 105, ${0.42 * flicker})`);
+            lanternHalo.addColorStop(1, 'rgba(255, 206, 105, 0)');
+            ctx.fillStyle = lanternHalo;
+            ctx.beginPath();
+            ctx.arc(x, topY - 7, 56, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Historic Black Cast-Iron Post
+            ctx.strokeStyle = '#111518';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, topY);
+            ctx.stroke();
+
+            // Fluted base
+            ctx.fillStyle = '#111518';
+            ctx.beginPath();
+            ctx.moveTo(x - 6, y);
+            ctx.lineTo(x + 6, y);
+            ctx.lineTo(x + 3, y - 14);
+            ctx.lineTo(x - 3, y - 14);
+            ctx.closePath();
+            ctx.fill();
+
+            // Cedar Garland Spiral & Red Christmas Bow on Lamppost
+            ctx.strokeStyle = '#143d2c';
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(x - 3, topY + 14);
+            ctx.quadraticCurveTo(x + 5, topY + 28, x - 3, topY + 42);
+            ctx.quadraticCurveTo(x + 5, topY + 54, x - 2, topY + 64);
+            ctx.stroke();
+
+            // Bright Red Ribbon Bow under Lantern
+            ctx.fillStyle = '#c42129';
+            ctx.beginPath();
+            ctx.arc(x - 4, topY + 12, 4, 0, Math.PI * 2);
+            ctx.arc(x + 4, topY + 12, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(x - 3, topY + 14, 2.5, 9);
+            ctx.fillRect(x + 0.5, topY + 14, 2.5, 9);
+
+            // Crossbar
+            ctx.strokeStyle = '#111518';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(x - 9, topY + 7);
+            ctx.lineTo(x + 9, topY + 7);
+            ctx.stroke();
+
+            // Glowing Hexagonal Glass Lantern Housing
+            ctx.fillStyle = '#fff5cc';
+            ctx.beginPath();
+            ctx.moveTo(x - 6, topY);
+            ctx.lineTo(x - 8, topY - 14);
+            ctx.lineTo(x + 8, topY - 14);
+            ctx.lineTo(x + 6, topY);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = '#111518';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Lantern Cap & Finial
+            ctx.fillStyle = '#111518';
+            ctx.beginPath();
+            ctx.moveTo(x - 10, topY - 14);
+            ctx.lineTo(x, topY - 22);
+            ctx.lineTo(x + 10, topY - 14);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        function drawShopper(p) {
+            const { x, y, dir, scale, stridePhase, coat, pants, skin, hair, scarf, hasHat, hatColor, bagCount, bag1Color, bag2Color, hasCoffee } = p;
+            const swing = Math.sin(stridePhase) * 6;
+            const bob = Math.abs(Math.cos(stridePhase)) * 1.8;
+
+            ctx.save();
+            ctx.translate(x, y - bob);
+            ctx.scale(scale * dir, scale);
+
+            // Midday sunlight cast shadow on brick sidewalk
+            ctx.fillStyle = 'rgba(35, 26, 20, 0.22)';
+            ctx.beginPath();
+            ctx.ellipse(-5 * dir, bob + 2, 13, 3.8, -0.15, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Back Leg
+            ctx.strokeStyle = pants;
+            ctx.lineWidth = 3.8;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(0, -16);
+            ctx.lineTo(-swing, -1);
+            ctx.stroke();
+
+            // Front Leg
+            ctx.beginPath();
+            ctx.moveTo(0, -16);
+            ctx.lineTo(swing, -1);
+            ctx.stroke();
+
+            // Tailored Winter Coat / Barbour Jacket
+            ctx.fillStyle = coat;
+            ctx.beginPath();
+            ctx.moveTo(-6, -34);
+            ctx.lineTo(6, -34);
+            ctx.lineTo(9.5, -13);
+            ctx.lineTo(-9.5, -13);
+            ctx.closePath();
+            ctx.fill();
+
+            // Head & Hair
+            ctx.fillStyle = skin;
+            ctx.beginPath();
+            ctx.arc(0, -40, 5.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = hair;
+            ctx.beginPath();
+            ctx.arc(-1, -41, 5.6, Math.PI * 0.85, Math.PI * 2.05);
+            ctx.fill();
+
+            // Optional Winter Hat / Fedora / Knit Cap
+            if (hasHat) {
+                ctx.fillStyle = hatColor;
+                ctx.beginPath();
+                ctx.arc(0, -42, 5.8, Math.PI, 0);
+                ctx.fill();
+            }
+
+            // Cozy Winter Scarf
+            ctx.fillStyle = scarf;
+            ctx.beginPath();
+            ctx.roundRect(-6, -35, 12, 3.8, 1.5);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(-4, -33);
+            ctx.quadraticCurveTo(-9 - Math.sin(stridePhase) * 2, -28, -11, -22);
+            ctx.lineTo(-7.5, -21.5);
+            ctx.quadraticCurveTo(-6, -27, -2, -32);
+            ctx.closePath();
+            ctx.fill();
+
+            // Shopping Bags with Ribbon Handles carried in hand!
+            const handX = 4 - swing * 0.35;
+            const handY = -18;
+
+            // Arm holding shopping bags
+            ctx.strokeStyle = coat;
+            ctx.lineWidth = 3.4;
+            ctx.beginPath();
+            ctx.moveTo(1, -30);
+            ctx.lineTo(handX, handY);
+            ctx.stroke();
+
+            // Bag 1
+            ctx.fillStyle = bag1Color;
+            ctx.fillRect(handX - 4, handY + 2, 10, 12);
+            ctx.strokeStyle = '#d4af37';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(handX + 1, handY + 2, 3, Math.PI, 0);
+            ctx.stroke();
+
+            // Optional Bag 2 (slightly offset)
+            if (bagCount > 1) {
+                ctx.fillStyle = bag2Color;
+                ctx.fillRect(handX - 8, handY + 4, 9, 11);
+                ctx.strokeStyle = '#8b1e24';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(handX - 3.5, handY + 4, 2.8, Math.PI, 0);
+                ctx.stroke();
+            }
+
+            // Optional Hot Cider / Coffee Cup in other hand
+            if (hasCoffee) {
+                ctx.fillStyle = '#fdfbf7';
+                ctx.fillRect(6, -27, 4.5, 6);
+                ctx.fillStyle = '#8b1e24';
+                ctx.fillRect(5.5, -28, 5.5, 1.5);
+            }
+
+            ctx.restore();
+        }
+
+        function updateAndDrawChimneySmoke(dt) {
+            for (const b of storefronts) {
+                if (!b.hasChimney) continue;
+                b.smokeTimer -= dt;
+                if (b.smokeTimer <= 0) {
+                    b.smokeTimer = 0.65 + Math.random() * 0.45;
+                    const chimX = b.x + b.chimneySide * (b.width * 0.34);
+                    const chimY = (b.y - b.height) - b.roofH - 16;
+                    smokeParticles.push({
+                        x: chimX + (Math.random() * 4 - 2),
+                        y: chimY,
+                        r: 4 + Math.random() * 3,
+                        vy: 12 + Math.random() * 7,
+                        vx: 6 + Math.random() * 5,
+                        alpha: 0.22
+                    });
+                }
+            }
+
+            for (let i = smokeParticles.length - 1; i >= 0; i--) {
+                const p = smokeParticles[i];
+                p.y -= p.vy * dt;
+                p.x += p.vx * dt;
+                p.r += 4 * dt;
+                p.alpha -= 0.07 * dt;
+
+                if (p.alpha <= 0) {
+                    smokeParticles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(195, 208, 228, ${p.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        function updateAndDrawSnowFlakes(w, h, dt, time) {
+            for (const f of snowFlakes) {
+                f.y += f.vy * dt;
+                f.x += (f.vx + Math.sin(time * 1.4 + f.phase) * 9) * dt;
+
+                if (f.y > h * 0.94) {
+                    f.y = -8;
+                    f.x = Math.random() * w;
+                }
+                if (f.x > w + 10) f.x = -10;
+                if (f.x < -10) f.x = w + 10;
+
+                ctx.beginPath();
+                ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 250, 238, ${f.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        function renderMiddleburgFrame(timestamp) {
+            if (!lastTimestamp) lastTimestamp = timestamp;
+            const dt = Math.min((timestamp - lastTimestamp) / 1000, 0.05);
+            lastTimestamp = timestamp;
+
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            if (sceneAnimating) {
+                elapsedTime += dt;
+            }
+            const activeDt = sceneAnimating ? dt : 0;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Layer 1: Starry winter night sky, crescent moon, clouds, and Blue Ridge foothills
+            drawNightSkyAndBlueRidge(w, h, activeDt, elapsedTime);
+
+            // Layer 2: Background winter trees behind Washington Street
+            for (const t of streetTrees) drawBackgroundTrees(t);
+
+            // Layer 3: Subtle hearth smoke & historic Middleburg fieldstone/brick storefronts
+            if (sceneAnimating) {
+                updateAndDrawChimneySmoke(activeDt);
+            } else {
+                for (const p of smokeParticles) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(195, 208, 228, ${p.alpha})`;
+                    ctx.fill();
+                }
+            }
+            for (const b of storefronts) drawMiddleburgStorefront(b, elapsedTime);
+
+            // Layer 4: Red-brick herringbone sidewalk, granite curb & Washington Street
+            drawSidewalkAndStreet(w, h);
+
+            // Layer 5: Glowing historic black iron lampposts with cedar garland & red bows
+            for (const lamp of lampposts) drawMiddleburgLamppost(lamp, elapsedTime);
+
+            // Layer 6: Animated holiday shoppers strolling with bags & hot cider
+            const sortedShoppers = [...shoppers].sort((a, b) => a.y - b.y);
+            for (const person of sortedShoppers) {
+                if (sceneAnimating) {
+                    person.x += person.speed * activeDt;
+                    person.stridePhase += Math.abs(person.speed) * 0.25 * activeDt;
+
+                    if (person.dir === 1 && person.x > w + 40) {
+                        person.x = -40;
+                    } else if (person.dir === -1 && person.x < -40) {
+                        person.x = w + 40;
+                    }
+                }
+                drawShopper(person);
+            }
+
+            // Layer 7: Soft evening snowflakes drifting through the lantern light
+            updateAndDrawSnowFlakes(w, h, activeDt, elapsedTime);
+
+            requestAnimationFrame(renderMiddleburgFrame);
+        }
+
+        sceneToggleBtn.addEventListener('click', () => {
+            sceneAnimating = !sceneAnimating;
+            sceneToggleBtn.setAttribute('aria-pressed', String(sceneAnimating));
+            sceneLabel.textContent = sceneAnimating ? 'Middleburg Night: On' : 'Middleburg Night: Paused';
+        });
+
+        window.addEventListener('resize', resizeCanvas);
+
+        // ============================================================================
+        // CAROUSEL NAVIGATION, FALLBACK ILLUSTRATION & LIGHTBOX LOGIC
+        // ============================================================================
+        let currentIndex = 0;
+
+        const slideBadge = document.getElementById('slide-badge');
+        const slideCounter = document.getElementById('slide-counter');
+        const slideImage = document.getElementById('slide-image');
+        const slideTitle = document.getElementById('slide-title');
+        const slideLocation = document.getElementById('slide-location');
+        const slideCaption = document.getElementById('slide-caption');
+        const slideTextContainer = document.getElementById('slide-text-container');
+        const yearPillsContainer = document.getElementById('year-pills');
+
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const mobilePrevBtn = document.getElementById('mobile-prev-btn');
+        const mobileNextBtn = document.getElementById('mobile-next-btn');
+
+        const photoTouchArea = document.getElementById('photo-touch-area');
+        const zoomBtn = document.getElementById('zoom-btn');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        /**
+         * Generates a festive SVG illustration fallback when a local image file
+         * hasn't been uploaded to the GitHub repository yet.
+         */
+        function createFallbackCardSvg(year) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+                    <defs>
+                        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#102b20"/>
+                            <stop offset="50%" stop-color="#183d2e"/>
+                            <stop offset="100%" stop-color="#0a1c15"/>
+                        </linearGradient>
+                        <radialGradient id="glow" cx="50%" cy="42%" r="48%">
+                            <stop offset="0%" stop-color="#dfba54" stop-opacity="0.28"/>
+                            <stop offset="100%" stop-color="#dfba54" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                    <rect width="800" height="500" fill="url(#bg)"/>
+                    <rect width="800" height="500" fill="url(#glow)"/>
+                    <rect x="24" y="24" width="752" height="452" rx="16" fill="none" stroke="#c99e32" stroke-width="2" stroke-opacity="0.65"/>
+                    <rect x="34" y="34" width="732" height="432" rx="12" fill="none" stroke="#f5e4b3" stroke-width="1" stroke-opacity="0.35"/>
+                    <g fill="#f5e4b3" opacity="0.8">
+                        <circle cx="130" cy="110" r="2.5"/><circle cx="670" cy="120" r="3"/>
+                        <circle cx="190" cy="360" r="2"/><circle cx="620" cy="340" r="2.5"/>
+                        <circle cx="240" cy="95" r="1.8"/><circle cx="560" cy="90" r="2"/>
+                    </g>
+                    <g transform="translate(400, 175)">
+                        <polygon points="0,-78 -34,-28 34,-28" fill="#21523e" stroke="#dfba54" stroke-width="1.2"/>
+                        <polygon points="0,-46 -48,12 48,12" fill="#183d2e" stroke="#dfba54" stroke-width="1.2"/>
+                        <polygon points="0,-10 -62,56 62,56" fill="#102b20" stroke="#dfba54" stroke-width="1.2"/>
+                        <rect x="-10" y="56" width="20" height="22" rx="2" fill="#8a6414"/>
+                        <polygon points="0,-92 4,-81 15,-81 6,-74 9,-63 0,-70 -9,-63 -6,-74 -15,-81 -4,-81" fill="#ebd082"/>
+                        <circle cx="-14" cy="-12" r="4" fill="#dfba54"/>
+                        <circle cx="18" cy="4" r="4" fill="#f5e4b3"/>
+                        <circle cx="-24" cy="34" r="4.5" fill="#ebd082"/>
+                        <circle cx="22" cy="38" r="4.5" fill="#c99e32"/>
+                    </g>
+                    <text x="400" y="312" text-anchor="middle" font-family="Georgia, serif" font-size="38" font-weight="bold" fill="#f5e4b3" letter-spacing="3">
+                        CHRISTMAS ${year}
+                    </text>
+                    <text x="400" y="348" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#ebd082" letter-spacing="2">
+                        UPLOAD IMAGES/${year}.JPG TO DISPLAY YOUR FAMILY PHOTO
+                    </text>
+                </svg>
+            `;
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg.trim());
+        }
+
+        function renderYearPills() {
+            if (!yearPillsContainer) return;
+            yearPillsContainer.innerHTML = '';
+
+            holidayPhotos.forEach((item, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = item.year;
+                btn.setAttribute('aria-label', `View holiday photo for ${item.year}`);
+                const isActive = idx === currentIndex;
+
+                btn.className = isActive
+                    ? 'px-4 py-1.5 rounded-full bg-gold-600 text-cream font-serif font-semibold text-sm sm:text-base border border-gold-400 shadow-md scale-105 transition-all duration-200 cursor-pointer'
+                    : 'px-3.5 py-1.5 rounded-full bg-cream/80 hover:bg-cream text-evergreen-950 font-serif font-medium text-sm sm:text-base border border-gold-600/45 hover:border-gold-600 shadow-sm transition-all duration-200 cursor-pointer';
+
+                btn.addEventListener('click', () => goToSlide(idx));
+                yearPillsContainer.appendChild(btn);
+            });
+        }
+
+        function goToSlide(index) {
+            if (!holidayPhotos.length) return;
+            const total = holidayPhotos.length;
+            currentIndex = ((index % total) + total) % total;
+            const photo = holidayPhotos[currentIndex];
+
+            slideImage.style.opacity = '0.25';
+            slideTextContainer.style.opacity = '0.4';
+
+            setTimeout(() => {
+                slideBadge.textContent = photo.badge || `Christmas ${photo.year}`;
+                slideCounter.textContent = `${currentIndex + 1} of ${total}`;
+                slideTitle.textContent = photo.title;
+                slideLocation.textContent = photo.location;
+                slideCaption.textContent = photo.caption;
+
+                slideImage.onerror = () => {
+                    slideImage.onerror = null;
+                    slideImage.src = createFallbackCardSvg(photo.year);
+                };
+                slideImage.alt = `${photo.badge || photo.year} — ${photo.title}`;
+                slideImage.src = photo.image;
+
+                slideImage.style.opacity = '1';
+                slideTextContainer.style.opacity = '1';
+                renderYearPills();
+            }, 140);
+        }
+
+        function openLightbox() {
+            const photo = holidayPhotos[currentIndex];
+            if (!photo) return;
+            lightboxImg.src = slideImage.src;
+            lightboxCaption.textContent = `${photo.badge || photo.year} • ${photo.title} (${photo.location})`;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+        }
+
+        // Button & Keyboard Event Listeners
+        prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+        nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+        mobilePrevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+        mobileNextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+        photoTouchArea?.addEventListener('click', openLightbox);
+        zoomBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openLightbox();
+        });
+        lightboxClose?.addEventListener('click', closeLightbox);
+        lightbox?.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+                return;
+            }
+            if (e.key === 'ArrowLeft') {
+                goToSlide(currentIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                goToSlide(currentIndex + 1);
+            }
+        });
+
+        // Touch Swipe Support on Mobile
+        let touchStartX = 0;
+        photoTouchArea?.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        photoTouchArea?.addEventListener('touchend', (e) => {
+            const deltaX = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(deltaX) > 45) {
+                if (deltaX > 0) {
+                    goToSlide(currentIndex - 1);
+                } else {
+                    goToSlide(currentIndex + 1);
+                }
+            }
+        }, { passive: true });
+
+        window.onload = function () {
+            resizeCanvas();
+            requestAnimationFrame(renderMiddleburgFrame);
+            goToSlide(0);
+        };
+    </script>
+</body>
+</html>
